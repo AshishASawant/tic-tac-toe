@@ -101,7 +101,7 @@ body{
 @media only screen and (max-width: 1024px){
     .container{
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
     .gamecontainer{
         grid-template-columns: repeat(3,17vw);
@@ -109,8 +109,7 @@ body{
         font-size: 10vw;
     }
     .infocontainer{
-        margin-top: 5vw;
-
+        margin-bottom: 5vw;
         font-size: 2.5vw;
         width: 70vw;
     }
@@ -131,3 +130,8 @@ body{
     
     }
 }
+.isdisabled{
+    pointer-events: none;
+}
+
+   
