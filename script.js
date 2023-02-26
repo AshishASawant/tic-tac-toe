@@ -5,9 +5,7 @@ let boxes = document.getElementsByClassName("boxes");
 let reset = document.getElementById("reset");
 let wingif = document.querySelector(".wingif");
 let details = document.querySelector(".details");
-console.log(details.children[0]);
 
-console.log(boxes);
 
 reset.addEventListener("click", () => {
   win = false;
@@ -15,22 +13,10 @@ reset.addEventListener("click", () => {
     box.innerHTML = "";
   });
   turn = "X";
-  details.innerHTML = `<h3>Turn for: <span class="playerTurn">X</span></h3>`;
+  details.innerHTML = `<h3>Turn for: <span class="playerTurn">${turn}</span></h3>`;
   wingif.style.display = "none";
   wingif.style.width = "0";
   document.querySelector('.gamecontainer').style.pointerEvents=''
-  Array.from(boxes).forEach((box) => {
-    box.addEventListener(
-      "click",
-      (clicked = () => {
-        box.removeEventListener("click", clicked);
-        box.innerHTML = turn;
-        winCase();
-        audio.play();
-      }),
-      { once: true }
-    );
-  });
 });
 
 const changeturn = () => {
@@ -67,7 +53,6 @@ const winCase = () => {
       boxes[winCondition[index][0]].innerHTML !== ""
     ) {
       win = true;
-      console.log(boxes[winCondition[index][0]].innerHTML, "wins");
       wingif.style.display = "block";
       wingif.style.width = "20vw";
     document.querySelector('.gamecontainer').style.pointerEvents='none'
@@ -81,10 +66,11 @@ Array.from(boxes).forEach((box) => {
   box.addEventListener(
     "click",
     (clicked = () => {
-      box.innerHTML = turn;
-      winCase();
-      audio.play();
+      if(box.innerText===""){
+        box.innerText=turn;
+        winCase();
+        audio.play();
+      }
     }),
-    { once: true }
   );
 });
